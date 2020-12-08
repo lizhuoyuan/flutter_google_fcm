@@ -18,12 +18,16 @@ class NotificationManager {
     return token;
   }
 
-  static init() async {
+  static Future<void> init() async {
+    ///初始化
     await Firebase.initializeApp();
 
-    var initializationSettingsAndroid = new AndroidInitializationSettings('launch_background');
-    var initializationSettingsIOS = new IOSInitializationSettings();
+    ///订阅主题
+    await FirebaseMessaging.instance.subscribeToTopic('weather');
 
+    var initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
+    var initializationSettingsIOS = IOSInitializationSettings(
+        requestAlertPermission: true, requestBadgePermission: true, requestSoundPermission: true);
     FlutterLocalNotificationsPlugin().initialize(
         InitializationSettings(
             android: initializationSettingsAndroid, iOS: initializationSettingsIOS),
