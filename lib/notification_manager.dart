@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:sensors_analytics_flutter_plugin/sensors_analytics_flutter_plugin.dart';
 
 ///FCM配置
 
@@ -97,6 +98,7 @@ class NotificationManager {
 
   static Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     print("收到后台消息: ${message.messageId}");
+    //todo 此处调用神策
   }
 
   static Future _onSelectNotification(String payload) {
